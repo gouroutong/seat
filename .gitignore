@@ -1,0 +1,29 @@
+# ---> Go
+# Binaries for programs and plugins
+
+*.exe
+*.xml
+*.zip
+*.csv
+*.xlsx
+*.xes
+*.mxml
+*.dll
+*.so
+*.dylib
+.idea
+go.sum
+assets/file
+*.DS_Store
+!.gitkeep
+# Test binary, build with `go test -c`
+*.test
+assets/swagger
+assets/exportFile
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+.history
+# Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
+.glide/
+config.json
+bin/*
