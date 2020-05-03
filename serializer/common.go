@@ -20,7 +20,7 @@ func ListResponse(list interface{}, err error) Response {
 		}
 	}
 	return Response{
-		Code: 2000,
+		Code: 200,
 		Result: DataList{
 			List: list,
 		},
@@ -36,7 +36,7 @@ func GetResponse(result interface{}, err error) Response {
 		}
 	}
 	return Response{
-		Code:   2000,
+		Code:   200,
 		Result: result,
 		ErrMsg: "",
 	}

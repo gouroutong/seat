@@ -5,28 +5,31 @@ env.user = 'root'
 
 
 # from fabric import task
+
+
 @task
 def tar_task():
-    # 打包
-    local("make build_process_linux")
-    with lcd("bin"):
-        local('tar -czvf process-server.tar.gz process-server')
+  # 打包
+  local('make all')
+
+
+@task
+def upload():
+  with settings(warn_only=True):
+    put(".env", "/root/process/.env")
 
 
 @task
 def put_task():
-    with settings(warn_only=True):
-        put("bin/process-server.tar.gz", "/root/program/process/process-server.tar.gz")
-    with cd("/root/program/process"):
-        run('tar -xzvf process-server.tar.gz')
-        run("rm -rf process-server.tar.gz")
-    with cd("/root"):
-        run('supervisorctl update')
-        run('supervisorctl -c supervisord.conf reload')
-        run("echo success")
+  # 创建远程服务器文件夹
+  with cd("/root/process"):
+    run('docker-compose up -d')
+    run("echo success")
+    run("exit")
 
 
 @task
 def deploy():
-    tar_task()
-    put_task()
+  tar_task()
+  upload()
+  put_task()
